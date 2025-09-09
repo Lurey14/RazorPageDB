@@ -5,7 +5,7 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Edit</h1>
+@* <h1>Edit</h1>
 
 <h4>Tarea</h4>
 <hr />
@@ -47,4 +47,42 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+} *@
+
+<div class="cuerpo-pagina">
+    <h1 class="titulo-principal">Editar Tarea</h1>
+    <div class="contenedor-formulario">
+        <form method="post" class="formulario-tarea">
+            <div asp-validation-summary="ModelOnly" class="mensaje-error"></div>
+            <input type="hidden" asp-for="Tarea.Id" />
+            <div class="campo-formulario">
+                <label asp-for="Tarea.nombreTarea" class="etiqueta-formulario"></label>
+                <input asp-for="Tarea.nombreTarea" class="input-formulario" />
+                <span asp-validation-for="Tarea.nombreTarea" class="mensaje-error"></span>
+            </div>
+            <div class="campo-formulario">
+                <label asp-for="Tarea.fechaVencimiento" class="etiqueta-formulario"></label>
+                <input asp-for="Tarea.fechaVencimiento" class="input-formulario" />
+                <span asp-validation-for="Tarea.fechaVencimiento" class="mensaje-error"></span>
+            </div>
+            <div class="campo-formulario">
+                <label asp-for="Tarea.estado" class="etiqueta-formulario"></label>
+                <input asp-for="Tarea.estado" class="input-formulario" />
+                <span asp-validation-for="Tarea.estado" class="mensaje-error"></span>
+            </div>
+            <div class="campo-formulario">
+                <label asp-for="Tarea.idUsuario" class="etiqueta-formulario"></label>
+                <input asp-for="Tarea.idUsuario" class="input-formulario" />
+                <span asp-validation-for="Tarea.idUsuario" class="mensaje-error"></span>
+            </div>
+            <div class="acciones-formulario">
+                <input type="submit" value="Guardar" class="boton-formulario" />
+                <a asp-page="./Index" class="enlace-volver">Volver a la Lista</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

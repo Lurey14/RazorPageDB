@@ -5,7 +5,7 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+@* <h1>Details</h1>
 
 <div>
     <h4>Tarea</h4>
@@ -40,4 +40,30 @@
 <div>
     <a asp-page="./Edit" asp-route-id="@Model.Tarea.Id">Edit</a> |
     <a asp-page="./Index">Back to List</a>
+</div> *@
+
+<div class="cuerpo-pagina">
+    <h1 class="titulo-principal">Detalles de la Tarea</h1>
+    <div class="tarjeta-detalle">
+        <div class="fila-detalle">
+            <span class="etiqueta-detalle">@Html.DisplayNameFor(model => model.Tarea.nombreTarea):</span>
+            <span class="valor-detalle">@Html.DisplayFor(model => model.Tarea.nombreTarea)</span>
+        </div>
+        <div class="fila-detalle">
+            <span class="etiqueta-detalle">@Html.DisplayNameFor(model => model.Tarea.fechaVencimiento):</span>
+            <span class="valor-detalle">@Html.DisplayFor(model => model.Tarea.fechaVencimiento)</span>
+        </div>
+        <div class="fila-detalle">
+            <span class="etiqueta-detalle">@Html.DisplayNameFor(model => model.Tarea.estado):</span>
+            <span class="valor-detalle">@Html.DisplayFor(model => model.Tarea.estado)</span>
+        </div>
+        <div class="fila-detalle">
+            <span class="etiqueta-detalle">@Html.DisplayNameFor(model => model.Tarea.idUsuario):</span>
+            <span class="valor-detalle">@Html.DisplayFor(model => model.Tarea.idUsuario)</span>
+        </div>
+    </div>
+    <div class="acciones-formulario acciones-centro">
+        <a asp-page="./Edit" asp-route-id="@Model.Tarea.Id" class="boton-formulario">Editar</a>
+        <a asp-page="./Index" class="enlace-volver">Volver a la Lista</a>
+    </div>
 </div>

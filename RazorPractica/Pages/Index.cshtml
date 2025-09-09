@@ -5,7 +5,7 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+@* <h1>Index</h1>
 
 <p>
     <a asp-page="Create">Create New</a>
@@ -51,4 +51,39 @@
         </tr>
 }
     </tbody>
-</table>
+</table> *@
+
+<div class="cuerpo-pagina">
+    <h1 class="titulo-principal">Lista de Tareas</h1>
+
+    <p>
+        <a asp-page="Create" class="boton-crear">Crear Nueva Tarea</a>
+    </p>
+    <table class="tabla-tareas">
+        <thead class="cabecera-tabla">
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Tarea[0].nombreTarea)</th>
+                <th>@Html.DisplayNameFor(model => model.Tarea[0].fechaVencimiento)</th>
+                <th>@Html.DisplayNameFor(model => model.Tarea[0].estado)</th>
+                <th>@Html.DisplayNameFor(model => model.Tarea[0].idUsuario)</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Tarea)
+            {
+                <tr class="fila-tarea">
+                    <td class="celda-tarea">@Html.DisplayFor(modelItem => item.nombreTarea)</td>
+                    <td class="celda-tarea">@Html.DisplayFor(modelItem => item.fechaVencimiento)</td>
+                    <td class="celda-tarea">@Html.DisplayFor(modelItem => item.estado)</td>
+                    <td class="celda-tarea">@Html.DisplayFor(modelItem => item.idUsuario)</td>
+                    <td class="celda-tarea celda-acciones">
+                        <a asp-page="./Edit" asp-route-id="@item.Id" class="enlace-accion">Editar</a>
+                        <a asp-page="./Details" asp-route-id="@item.Id" class="enlace-accion">Detalles</a>
+                        <a asp-page="./Delete" asp-route-id="@item.Id" class="enlace-accion">Eliminar</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
