@@ -1,4 +1,4 @@
-﻿@model Practica_MVC.Models.ProductoModel
+﻿@* @model Practica_MVC.Models.ProductoModel
 
 @{
     ViewData["Title"] = "Details";
@@ -39,4 +39,76 @@
 <div>
     <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
     <a asp-action="Index">Back to List</a>
+</div>
+ *@
+
+@model Practica_MVC.Models.ProductoModel
+
+@{
+    ViewData["Title"] = "Detalles del Producto";
+}
+
+<div class="container mt-4">
+    <div class="card shadow">
+        <div class="card-header bg-info text-white">
+            <h2 class="mb-0">Detalles del Producto</h2>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card mb-3">
+                        <div class="card-header bg-light">
+                            <h5 class="mb-0">Información Básica</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <label class="fw-bold">@Html.DisplayNameFor(model => model.Nombre):</label>
+                                <p class="form-control-plaintext">@Html.DisplayFor(model => model.Nombre)</p>
+                            </div>
+                            <div class="mb-3">
+                                <label class="fw-bold">@Html.DisplayNameFor(model => model.Descripcion):</label>
+                                <p class="form-control-plaintext">@Html.DisplayFor(model => model.Descripcion)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card mb-3">
+                        <div class="card-header bg-light">
+                            <h5 class="mb-0">Información Comercial</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <label class="fw-bold">@Html.DisplayNameFor(model => model.Precio):</label>
+                                <p class="form-control-plaintext fs-4">$@Html.DisplayFor(model => model.Precio)</p>
+                            </div>
+                            <div class="mb-3">
+                                <label class="fw-bold">@Html.DisplayNameFor(model => model.Stock):</label>
+                                <div class="d-flex align-items-center">
+                                    <span class="form-control-plaintext">@Html.DisplayFor(model => model.Stock) unidades</span>
+                                    @if (Model.Stock > 0)
+                                    {
+                                        <span class="badge bg-success ms-2">Disponible</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-danger ms-2">Agotado</span>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-4 d-flex">
+                <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-primary me-2">
+                    <i class="fas fa-edit"></i> Editar
+                </a>
+                <a asp-action="Index" class="btn btn-secondary">
+                    <i class="fas fa-list"></i> Volver a la Lista
+                </a>
+            </div>
+        </div>
+    </div>
 </div>

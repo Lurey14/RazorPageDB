@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Practica_MVC.Models.ProductoModel>
+﻿@* @model IEnumerable<Practica_MVC.Models.ProductoModel>
 
 @{
     ViewData["Title"] = "Index";
@@ -51,3 +51,125 @@
 }
     </tbody>
 </table>
+ *@
+ @model IEnumerable<Practica_MVC.Models.ProductoModel>
+
+@{
+    ViewData["Title"] = "Listado de Productos";
+}
+
+<div class="container product-container">
+    <div class="row mb-4">
+        <div class="col">
+            <h1 class="product-title">Catálogo de Productos</h1>
+        </div>
+        <div class="col text-end">
+            <a asp-action="Create" class="btn btn-success">
+                <i class="fas fa-plus-circle"></i> Añadir Nuevo Producto
+            </a>
+        </div>
+    </div>
+
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-hover product-table">
+                    <thead class="table-primary">
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Nombre)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Descripcion)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Precio)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Stock)
+                            </th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Nombre)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Descripcion)
+                                </td>
+                                <td class="text-end">
+                                    <span class="price-tag">@Html.DisplayFor(modelItem => item.Precio)</span>
+                                </td>
+                                <td class="text-center">
+                                    @if (item.Stock > 10)
+                                    {
+                                        <span class="badge bg-success">@item.Stock</span>
+                                    }
+                                    else if (item.Stock > 0)
+                                    {
+                                        <span class="badge bg-warning text-dark">@item.Stock</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-danger">Sin stock</span>
+                                    }
+                                </td>
+                                <td>
+                                    <div class="btn-group" role="group">
+                                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-primary">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                        <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-outline-info">
+                                            <i class="fas fa-info-circle"></i>
+                                        </a>
+                                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-outline-danger">
+                                            <i class="fas fa-trash"></i>
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Styles {
+    <style>
+        .product-container {
+            padding-top: 1.5rem;
+            padding-bottom: 1.5rem;
+        }
+
+        .product-title {
+            color: #3c4858;
+            font-weight: 600;
+        }
+
+        .product-table th {
+            font-weight: 600;
+        }
+
+        .product-table tbody tr:hover {
+            background-color: rgba(0, 123, 255, 0.05);
+        }
+
+        .price-tag::before {
+            content: "$";
+        }
+
+        .btn-group .btn {
+            margin-right: 2px;
+        }
+    </style>
+}
+
+@section Scripts {
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+}
